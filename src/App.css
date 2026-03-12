@@ -1,0 +1,169 @@
+/* App.css */
+#root {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.romantic-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 4.5rem;
+  color: var(--pink-600);
+  text-shadow: 2px 2px 4px rgba(225, 29, 72, 0.2);
+  margin-bottom: 2rem;
+  text-align: center;
+  line-height: +1.2;
+  padding: 0 1rem;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  position: relative;
+  min-height: 100px;
+}
+
+.btn {
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-yes {
+  background: linear-gradient(to right, var(--pink-500), var(--pink-600));
+  color: white;
+}
+
+.btn-yes:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(225, 29, 72, 0.3), 0 8px 10px -6px rgba(225, 29, 72, 0.3);
+}
+
+.btn-no {
+  background: white;
+  color: var(--pink-600);
+  border: 2px solid var(--pink-200);
+  position: relative; /* Restored to relative to keep it natively spaced from Yes */
+}
+
+/* Gacha Scene */
+.gacha-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.gift-box {
+  font-size: 15rem; /* Made significantly larger as requested */
+  cursor: pointer;
+  filter: drop-shadow(0 0 20px var(--gold-glow));
+  transition: transform 0.2s;
+  position: relative;
+}
+
+.gift-box:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.dark-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.options-container {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 20;
+}
+
+.option-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 250px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--pink-100);
+  transition: all 0.3s ease;
+}
+
+.option-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--pink-400);
+  box-shadow: 0 25px 30px -5px rgba(225, 29, 72, 0.2);
+}
+
+.option-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.option-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--pink-600);
+  margin-bottom: 0.5rem;
+}
+
+.option-desc {
+  font-size: 1rem;
+  color: var(--text-dark);
+  opacity: 0.8;
+}
+
+/* Final Reveal Scene */
+.reveal-container {
+  text-align: center;
+  max-width: 600px;
+  background: white;
+  padding: 3rem;
+  border-radius: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  border: 4px solid var(--pink-200);
+}
+
+.reveal-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.5rem;
+  color: var(--pink-600);
+  margin-bottom: 1rem;
+}
+
+.reveal-gift {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .romantic-title {
+    font-size: 3rem;
+  }
+  .options-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}

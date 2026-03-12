@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Dancing+Script:wght@700&display=swap');
+
+:root {
+  --pink-50: #fff0f3;
+  --pink-100: #ffe3e8;
+  --pink-200: #fecdd6;
+  --pink-300: #fca5b5;
+  --pink-400: #fa748d;
+  --pink-500: #f43f5e;
+  --pink-600: #e11d48;
+  
+  --gold-300: #fde047;
+  --gold-400: #facc15;
+  --gold-500: #eab308;
+  --gold-glow: rgba(250, 204, 21, 0.6);
+  
+  --text-dark: #4c0519;
+  --text-light: #fff0f3;
+  
+  --bg-gradient: linear-gradient(135deg, var(--pink-100) 0%, var(--pink-50) 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+}
