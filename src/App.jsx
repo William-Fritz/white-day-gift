@@ -14,7 +14,7 @@ export default function App() {
 
   useEffect(() => {
     if (currentView !== 'home') return;
-    
+
     let animationFrameId;
     let targetX = noButtonPosition.x;
     let targetY = noButtonPosition.y;
@@ -24,28 +24,28 @@ export default function App() {
     const handleMouseMove = (e) => {
       const btnElement = document.getElementById('no-btn');
       if (!btnElement) return;
-      
+
       const rect = btnElement.getBoundingClientRect();
       const btnX = rect.left + rect.width / 2;
       const btnY = rect.top + rect.height / 2;
-      
+
       const distance = Math.hypot(e.clientX - btnX, e.clientY - btnY);
       const safeDistance = 120; // Distance at which it starts running
-      
+
       if (distance < safeDistance) {
         // Calculate the vector pointing AWAY from the cursor
         const angle = Math.atan2(btnY - e.clientY, btnX - e.clientX);
         // Push it just far enough outside the safe radius
-        const pushDistance = safeDistance - distance + 20; 
-        
+        const pushDistance = safeDistance - distance + 20;
+
         targetX = currentX + Math.cos(angle) * pushDistance;
         targetY = currentY + Math.sin(angle) * pushDistance;
-        
+
         // Gentle clamping to keep it on screen, but relatively close to center
         const maxX = window.innerWidth / 2 - 100;
         const maxY = window.innerHeight / 2 - 100;
         const clamp = (val, max) => Math.max(-max, Math.min(max, val));
-        
+
         targetX = clamp(targetX, maxX);
         targetY = clamp(targetY, maxY);
       } else {
@@ -59,21 +59,21 @@ export default function App() {
       // Lerp (Linear Interpolation) for smooth, fluid movement
       currentX += (targetX - currentX) * 0.15;
       currentY += (targetY - currentY) * 0.15;
-      
+
       // Only update React state if there's a meaningful change to avoid infinite tiny re-renders
       if (Math.abs(currentX - noButtonPosition.x) > 0.5 || Math.abs(currentY - noButtonPosition.y) > 0.5) {
         setNoButtonPosition({ x: currentX, y: currentY });
       }
-      
+
       animationFrameId = requestAnimationFrame(updatePosition);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('touchmove', (e) => handleMouseMove(e.touches[0]));
-    
+
     // Start the physics loop
     updatePosition();
-    
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('touchmove', handleMouseMove);
@@ -86,22 +86,22 @@ export default function App() {
       id: 'adventurous',
       title: 'Adventurous Gift',
       icon: <Map className="option-icon" color="#fa748d" />,
-      desc: 'For when she is feeling adventurous!',
-      revealText: 'A surprise weekend getaway!',
+      desc: 'For when you are feeling adventurous and full of!',
+      revealText: 'WE GON GO ON ADVENTURE!!!',
     },
     {
       id: 'romantic',
       title: 'Romantic Gift',
       icon: <Heart className="option-icon" color="#e11d48" />,
-      desc: 'For when she is feeling romantic!',
-      revealText: 'A fancy candle-lit dinner date!',
+      desc: 'For when you want something romantic!',
+      revealText: 'UUUUU YOU GETTT A DINNER DATE YIPPEE!',
     },
     {
       id: 'comfy',
       title: 'Comfy Gift',
       icon: <Coffee className="option-icon" color="#f87171" />,
-      desc: 'For maximum comfort!',
-      revealText: 'A cozy movie night with infinite snacks!',
+      desc: 'For comfotmaxxxingg mood!',
+      revealText: 'I knew you will choose this one, PREPARE FOR SURPRISE GIFTIES!',
     }
   ];
 
@@ -155,9 +155,9 @@ export default function App() {
   };
 
   return (
-    <div ref={containerRef} style={{ width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    <div ref={containerRef} style={{ width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
       <AnimatePresence mode="wait">
-        
+
         {/* HOMEPAGE VIEW */}
         {currentView === 'home' && (
           <motion.div
@@ -168,22 +168,22 @@ export default function App() {
             transition={{ duration: 0.8 }}
             style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
           >
-            <motion.h1 
+            <motion.h1
               className="romantic-title"
               animate={{ scale: [1, 1.02, 1] }}
               transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
             >
-              Hi Wife, Will You accept my love?
+              Hi Nata My Wife, Will You accept my love and gift OWO?
             </motion.h1>
 
             <div className="buttons-container">
-              <button 
+              <button
                 className="btn btn-yes"
                 onClick={() => setCurrentView('gacha')}
               >
                 Yes
               </button>
-              
+
               <motion.button
                 id="no-btn"
                 className="btn btn-no"
@@ -192,7 +192,7 @@ export default function App() {
                 onTouchStart={handleNoButtonDirectInteraction}
                 style={{
                   transform: `translate(${noButtonPosition.x}px, ${noButtonPosition.y}px)`,
-                  zIndex: 50 
+                  zIndex: 50
                 }}
               >
                 No
@@ -203,10 +203,10 @@ export default function App() {
 
         {/* GACHA VIEW */}
         {currentView === 'gacha' && (
-          <GachaView 
-            gifts={gifts} 
-            onOpen={openGiftBox} 
-            onSelect={handleOptionSelect} 
+          <GachaView
+            gifts={gifts}
+            onOpen={openGiftBox}
+            onSelect={handleOptionSelect}
           />
         )}
 
@@ -240,7 +240,7 @@ function GachaView({ gifts, onOpen, onSelect }) {
   const handleOpen = () => {
     if (opened || isBoiling) return;
     setIsBoiling(true);
-    
+
     // Boil for 1.5 seconds, then open!
     setTimeout(() => {
       setIsBoiling(false);
@@ -259,7 +259,7 @@ function GachaView({ gifts, onOpen, onSelect }) {
       className="gacha-container"
     >
       {/* Background dark overlay for drama */}
-      <motion.div 
+      <motion.div
         className="dark-overlay"
         initial={{ opacity: 0 }}
         animate={{ opacity: opened ? 0.8 : 0 }}
@@ -272,12 +272,12 @@ function GachaView({ gifts, onOpen, onSelect }) {
             key="closed-box"
             initial={{ scale: 1 }}
             animate={
-              isBoiling 
-                ? { 
-                    scale: [1, 1.2, 1.1, 1.3, 1.1, 1.25], 
-                    rotate: [-10, 10, -15, 15, -5, 5],
-                    filter: ['drop-shadow(0 0 20px rgba(250,204,21,0.6))', 'drop-shadow(0 0 60px rgba(250,204,21,1))']
-                  }
+              isBoiling
+                ? {
+                  scale: [1, 1.2, 1.1, 1.3, 1.1, 1.25],
+                  rotate: [-10, 10, -15, 15, -5, 5],
+                  filter: ['drop-shadow(0 0 20px rgba(250,204,21,0.6))', 'drop-shadow(0 0 60px rgba(250,204,21,1))']
+                }
                 : { scale: [1, 1.05, 1], rotate: [0, -2, 2, -2, 2, 0] }
             }
             transition={
@@ -301,7 +301,7 @@ function GachaView({ gifts, onOpen, onSelect }) {
             />
           </motion.div>
         ) : (
-          <motion.div 
+          <motion.div
             key="options"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
