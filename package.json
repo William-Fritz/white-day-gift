@@ -2,7 +2,7 @@
   "name": "tempapp",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://William-Fritz.github.io/romanticexec/",
+  "homepage": "https://William-Fritz.github.io/white-day-gift/",
   "type": "module",
   "scripts": {
     "dev": "vite",
