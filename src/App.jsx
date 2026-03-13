@@ -10,6 +10,8 @@ export default function App() {
   const [currentView, setCurrentView] = useState('home');
   const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 });
   const [selectedGift, setSelectedGift] = useState(null);
+  const [showClue, setShowClue] = useState(false);
+  const [showNote, setShowNote] = useState(false);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -87,7 +89,7 @@ export default function App() {
       title: 'Adventurous Gift',
       icon: <Map className="option-icon" color="#fa748d" />,
       desc: 'For when you are feeling adventurous and full of!',
-      revealText: 'WE GON GO ON ADVENTURE!!!',
+      revealText: 'WE GON GO ON TREASURE HUNTING ADVENTURE!',
     },
     {
       id: 'romantic',
@@ -101,7 +103,7 @@ export default function App() {
       title: 'Comfy Gift',
       icon: <Coffee className="option-icon" color="#f87171" />,
       desc: 'For comfotmaxxxingg mood!',
-      revealText: 'I knew you will choose this one, PREPARE FOR SURPRISE GIFTIES!',
+      revealText: 'I knew you will choose this one, You can go to that 1 Room to get your gift! (you know which room)',
     }
   ];
 
@@ -221,12 +223,92 @@ export default function App() {
           >
             <h2 className="reveal-title">You got...</h2>
             <div className="reveal-gift">{selectedGift.revealText}</div>
-            <p className="option-desc" style={{ fontSize: '1.2rem', marginTop: '1rem' }}>
+            <p className="option-desc" style={{ fontSize: '1.2rem', marginTop: '1rem', marginBottom: '2rem' }}>
               I love you so much! Happy White Day! ❤️
             </p>
+
+            {selectedGift.id === 'adventurous' && (
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn btn-yes"
+                style={{ fontSize: '1.2rem', padding: '0.8rem 2rem' }}
+                onClick={() => setShowClue(true)}>
+                Reveal Clue
+              </motion.button>
+            )}
+
+            {selectedGift.id === 'romantic' && (
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn btn-yes"
+                style={{ fontSize: '1.2rem', padding: '0.8rem 2rem' }}
+                onClick={() => setShowNote(true)}>
+                Read Note
+              </motion.button>
+            )}
           </motion.div>
         )}
 
+      </AnimatePresence>
+
+      {/* MODALS */}
+      <AnimatePresence>
+        {showClue && (
+          <motion.div
+            className="modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="clue-popup"
+              initial={{ scale: 0.8, y: 50 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.8, y: 50 }}
+            >
+              <h3 style={{ color: 'var(--pink-600)', marginBottom: '1rem', fontSize: '1.8rem', fontFamily: "'Dancing Script', cursive" }}>Treasure Clue</h3>
+              <p style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>[This is your husband alter Ego, William Speaking:]</p>
+              <p style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>[Remember to find this last tresure prize, you need to go back to all the first!!]</p>
+              <button className="close-btn" style={{ marginTop: '2rem' }} onClick={() => setShowClue(false)}>Close</button>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {showNote && (
+          <motion.div
+            className="modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="paper-note"
+              initial={{ rotate: -5, scale: 0.8 }}
+              animate={{ rotate: 0, scale: 1 }}
+              exit={{ rotate: 5, scale: 0.8 }}
+            >
+              <div className="paper-content">
+                <p>My Dearest Wife Nata,</p>
+                <br />
+                <p>Cihuy this time i will try to choose one present you would like </p>
+                <p>Even though last couple times has been unsuccessful (looking at me giving u PT session as prize)</p>
+                <p>Knowing some things i am sure this one will melt you and surprise you, please accept it</p>
+                <p>Cause i prepared this as a surprise so it will contradict what we agreed upon</p>
+                <p>And also it is planned for a long time, so i hope you forgive me for trying to hide it by saying contradictin things</p>
+                <p>Right now please enjoy the treasure hunt and expect big things, BIG TREASURE, SSR PULLS YIPPEE</p>
+                <br />
+                <p>Love forever,</p>
+                <p>Your Husband</p>
+
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '2rem' }}>
+                  <button className="close-btn" style={{ fontFamily: 'sans-serif', fontSize: '1rem' }} onClick={() => setShowNote(false)}>Fold Letter</button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
       </AnimatePresence>
     </div>
   );
@@ -308,6 +390,12 @@ function GachaView({ gifts, onOpen, onSelect }) {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="options-container"
           >
+            <h2
+              className="romantic-title"
+              style={{ width: '100%', color: 'white', textShadow: '0 4px 15px rgba(0,0,0,0.5)', marginBottom: '1rem', marginTop: '-2rem' }}
+            >
+              Choose one of the gift baby
+            </h2>
             {gifts.map((gift, i) => (
               <motion.div
                 key={gift.id}

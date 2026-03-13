@@ -1,16 +1,23 @@
-# React + Vite
+# White Day Gift App 🎁
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A cute, interactive React application created for White Day, featuring physics-based buttons, a gacha gift box reveal, romantic aesthetics, and customized overlays.
 
-Currently, two official plugins are available:
+## How to run the project locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Run the `npm install` command to install all necessary dependencies (you only need to do this once).
+2. Run the `npm run dev` command to start the Vite local development server.
+3. Open your browser and navigate to the local URL provided in your terminal (usually `http://localhost:5173/`).
 
-## React Compiler
+## How to build and deploy to GitHub Pages
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Since the app is already configured for deployment:
+1. Make sure you have committed all your changes.
+2. Run the deployment command:
+   ```bash
+   npm run deploy
+   ```
+3. This command will automatically build your app and push it to the `gh-pages` branch on your GitHub repository. Your updated site should be live on `https://William-Fritz.github.io/white-day-gift/` within a couple of minutes!
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+*This project uses React, Vite, Framer Motion, and Canvas Confetti.*

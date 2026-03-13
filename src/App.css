@@ -167,3 +167,78 @@
     align-items: center;
   }
 }
+
+/* Popups / Modals */
+.modal-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.clue-popup {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 1.5rem;
+  border: 4px dashed var(--pink-300);
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.paper-note {
+  background-color: #fffdf5;
+  background-image: linear-gradient(#bfdcf2 1px, transparent 1px);
+  background-size: 100% 2.5rem;
+  padding: 2.5rem 2rem 2.5rem 1rem;
+  border-radius: 5px;
+  width: 90%;
+  max-width: 500px;
+  min-height: 400px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2), inset 0 0 40px rgba(0,0,0,0.05); /* Notebook drop shadow + inner shading */
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  color: #333;
+  line-height: 2.5rem; /* Exactly matches the background-size height to snap text to lines */
+  position: relative;
+}
+
+.paper-note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 3.5rem;
+  width: 2px;
+  background-color: rgba(252, 165, 181, 0.8); /* Light pink margin line */
+}
+
+.paper-content {
+  margin-left: 4.5rem; /* Leave space past the margin line */
+  padding-top: 0.1rem; /* Adjust to align with the first blue line */
+}
+
+/* Remove default p margins so it sits cleanly on the linear-gradient lines */
+.paper-content p {
+  margin: 0;
+  min-height: 2.5rem;
+}
+
+.close-btn {
+  padding: 0.5rem 1.5rem;
+  background: var(--pink-500);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.close-btn:hover {
+  background: var(--pink-600);
+}
