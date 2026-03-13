@@ -88,7 +88,7 @@ export default function App() {
       id: 'adventurous',
       title: 'Adventurous Gift',
       icon: <Map className="option-icon" color="#fa748d" />,
-      desc: 'For when you are feeling adventurous and full of!',
+      desc: 'For when you are feeling adventurous and full of commitment!',
       revealText: 'WE GON GO ON TREASURE HUNTING ADVENTURE!',
     },
     {
@@ -96,7 +96,7 @@ export default function App() {
       title: 'Romantic Gift',
       icon: <Heart className="option-icon" color="#e11d48" />,
       desc: 'For when you want something romantic!',
-      revealText: 'UUUUU YOU GETTT A DINNER DATE YIPPEE!',
+      revealText: 'HEHEHEH Read the letter!',
     },
     {
       id: 'comfy',
